@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@300..700&display=swap");
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.12 0.006 245;
+    --foreground: 0.95 0.005 245;
+    --card: 0.16 0.008 245;
+    --card-foreground: 0.95 0.005 245;
+    --popover: 0.14 0.007 245;
+    --popover-foreground: 0.95 0.005 245;
+    --primary: 0.76 0.19 183;
+    --primary-foreground: 0.08 0.008 245;
+    --secondary: 0.22 0.01 245;
+    --secondary-foreground: 0.85 0.005 245;
+    --muted: 0.2 0.008 245;
+    --muted-foreground: 0.55 0.01 245;
+    --accent: 0.72 0.2 183;
+    --accent-foreground: 0.08 0.008 245;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.97 0.005 25;
+    --border: 0.24 0.01 245;
+    --input: 0.2 0.008 245;
+    --ring: 0.76 0.19 183;
+    --radius: 0.75rem;
+    --chart-1: 0.76 0.19 183;
+    --chart-2: 0.68 0.15 145;
+    --chart-3: 0.72 0.18 55;
+    --chart-4: 0.65 0.2 290;
+    --chart-5: 0.6 0.22 25;
+    --sidebar: 0.14 0.007 245;
+    --sidebar-foreground: 0.95 0.005 245;
+    --sidebar-primary: 0.76 0.19 183;
+    --sidebar-primary-foreground: 0.08 0.008 245;
+    --sidebar-accent: 0.22 0.01 245;
+    --sidebar-accent-foreground: 0.85 0.005 245;
+    --sidebar-border: 0.24 0.01 245;
+    --sidebar-ring: 0.76 0.19 183;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+/* Recording pulse animation */
+@keyframes rec-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.rec-dot {
+  animation: rec-pulse 1.2s ease-in-out infinite;
+}
+
+/* Noise texture overlay */
+.noise-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
